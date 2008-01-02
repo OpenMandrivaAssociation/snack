@@ -12,6 +12,7 @@ License: 	BSD
 Group: 		Sound
 URL: 		http://www.speech.kth.se/snack/
 Source: 	http://www.speech.kth.se/~kare/%{name}%{version}.tar.bz2
+BuildRoot: 	%{_tmppath}/%{name}-buildroot
 BuildRequires:	tcl 
 BuildRequires:  tk 
 BuildRequires:  libogg-devel 
