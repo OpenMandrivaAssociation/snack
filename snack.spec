@@ -1,13 +1,10 @@
-%define name	 snack
-%define version	 2.2.10
-%define release %mkrel 3
-
-%define libname %mklibname %name
+%define libname		%mklibname %{name}
+%define develname	%mklibname %{name} -d
 
 Summary:	Script-driven sound processing toolkit
-Name:		%{name}
-Version: 	%{version}
-Release: 	%{release}
+Name:		snack
+Version: 	2.2.10
+Release: 	%{mkrel 4}
 License: 	BSD
 Group: 		Sound
 URL: 		http://www.speech.kth.se/snack/
@@ -22,6 +19,7 @@ BuildRequires:	python-devel
 BuildRequires:  dos2unix
 BuildRequires:  tcl-devel
 BuildRequires:  tk-devel
+BuildRequires:	libalsa-devel
 
 %description
 Snack is a sound processing toolkit designed as an extension
@@ -35,13 +33,13 @@ The visualization canvas item types update in real-time and can output
 postscript. The same scripts run on Unix (Linux, Solaris, HP-UX, IRIX,
 FreeBSD, NetBSD), Macintosh, and Windows 95/98/NT/2000/XP.
 
-%package -n %libname
+%package -n %{libname}
 Summary:	Script-driven sound processing toolkit
 Group:		Sound
-Provides:	%name = %version
-Obsoletes:	%name = %version
+Provides:	%{name} = %{version}
+Obsoletes:	%{name} = %{version}
 
-%description -n %libname
+%description -n %{libname}
 Snack is a sound processing toolkit designed as an extension
 to a scripting language. Snack currently works with the scripting
 languages Tcl/Tk, Python, and Ruby.
@@ -53,27 +51,27 @@ The visualization canvas item types update in real-time and can output
 postscript. The same scripts run on Unix (Linux, Solaris, HP-UX, IRIX,
 FreeBSD, NetBSD), Macintosh, and Windows 95/98/NT/2000/XP.
 
-%package -n %libname-devel
+%package -n %{develname}
 Summary:	Development package for Snack
 Group:		Sound
 
-%description -n %libname-devel
+%description -n %{develname}
 Development package for Snack
 
-%package -n tcl-%name
+%package -n tcl-%{name}
 Summary:	Snack Sound Toolkit for Tcl
 Group:		Sound
-Requires:	%libname = %version tcl
+Requires:	%{libname} = %{version} tcl
 
-%description -n tcl-%name
+%description -n tcl-%{name}
 Snack Sound Toolkit for Tcl
 
-%package -n python-%name
+%package -n python-%{name}
 Summary:	Snack Sound Toolkit for Python	
 Group:		Sound
-Requires:	tcl-%name = %version tkinter
+Requires:	tcl-%{name} = %{version} tkinter
 
-%description -n python-%name
+%description -n python-%{name}
 Snack Sound Toolkit for Python
 
 %prep
@@ -82,9 +80,9 @@ chmod 644 COPYING README changes
 
 %build
 cd unix
-%configure2_5x --with-tcl=/usr/lib --with-tk=/usr/lib --with-ogg-include=/usr/include/ogg --with-ogg-lib=/usr/lib
-%make TCL_INCPATH=/usr/include TK_INCPATH=/usr/include CC="gcc $RPM_OPT_FLAGS"
-%make TCL_INCPATH=/usr/include TK_INCPATH=/usr/include CC="gcc $RPM_OPT_FLAGS" libsnackogg.so
+%configure2_5x --with-tcl=/usr/lib --with-tk=/usr/lib --with-ogg-include=/usr/include/ogg --with-ogg-lib=/usr/lib --enable-alsa
+%make TCL_INCPATH=/usr/include TK_INCPATH=/usr/include CC="gcc %{optflags}"
+%make TCL_INCPATH=/usr/include TK_INCPATH=/usr/include CC="gcc %{optflags}" libsnackogg.so
 
 %install
 rm -rf %{buildroot}
@@ -99,34 +97,34 @@ chmod 755 demos/python/*.py
 dos2unix demos/python/*.txt
 
 cd unix
-mkdir -p $RPM_BUILD_ROOT/%_libdir/%name%version
-mkdir -p $RPM_BUILD_ROOT/%_libdir/python%pyver/site-packages
-cp *.so $RPM_BUILD_ROOT/%_libdir/%name%version
-install -m 0755 *.tcl $RPM_BUILD_ROOT/%_libdir/%name%version
-cp *.a $RPM_BUILD_ROOT/%_libdir
+mkdir -p %{buildroot}%{_libdir}/%{name}%{version}
+mkdir -p %{buildroot}%{py_platsitedir}
+cp *.so %{buildroot}%{_libdir}/%{name}%{version}
+install -m 0755 *.tcl %{buildroot}%{_libdir}/%{name}%{version}
+cp *.a %{buildroot}/%{_libdir}
 cd ../python
-python setup.py install --root=%buildroot
+python setup.py install --root=%{buildroot} --compile --optimize=2
 
 %clean
 rm -rf %{buildroot}
 
-%files -n %libname
+%files -n %{libname}
 %defattr(-,root,root)
-%dir %_libdir/%name%version
-%_libdir/%name%version/*.so
+%dir %{_libdir}/%{name}%{version}
+%{_libdir}/%{name}%{version}/*.so
 
-%files -n %libname-devel
+%files -n %{develname}
 %defattr(-,root,root)
 %doc changes COPYING doc/A* doc/C* doc/F* README doc/S*
-%_libdir/*.a
+%{_libdir}/*.a
 
-%files -n tcl-%name
+%files -n tcl-%{name}
 %defattr(-,root,root)
 %doc doc/tcl-man.html demos/tcl/*
-%_libdir/%name%version/*.tcl
+%{_libdir}/%{name}%{version}/*.tcl
 
-%files -n python-%name
+%files -n python-%{name}
 %defattr(-,root,root)
 %doc doc/python-man.html demos/python/*
-%{_prefix}/lib/python%pyver/site-packages/*
+%{py_platsitedir}/*
 
