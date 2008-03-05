@@ -98,7 +98,7 @@ dos2unix demos/python/*.txt
 
 cd unix
 mkdir -p %{buildroot}%{_libdir}/%{name}%{version}
-mkdir -p %{buildroot}%{py_platsitedir}
+mkdir -p %{buildroot}%{py_puresitedir}
 cp *.so %{buildroot}%{_libdir}/%{name}%{version}
 install -m 0755 *.tcl %{buildroot}%{_libdir}/%{name}%{version}
 cp *.a %{buildroot}/%{_libdir}
@@ -126,5 +126,5 @@ rm -rf %{buildroot}
 %files -n python-%{name}
 %defattr(-,root,root)
 %doc doc/python-man.html demos/python/*
-%{py_platsitedir}/*
+%{py_puresitedir}/*
 
