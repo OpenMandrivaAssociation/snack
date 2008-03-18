@@ -4,7 +4,7 @@
 Summary:	Script-driven sound processing toolkit
 Name:		snack
 Version: 	2.2.10
-Release: 	%{mkrel 4}
+Release: 	%{mkrel 5}
 License: 	BSD
 Group: 		Sound
 URL: 		http://www.speech.kth.se/snack/
@@ -19,7 +19,6 @@ BuildRequires:	python-devel
 BuildRequires:  dos2unix
 BuildRequires:  tcl-devel
 BuildRequires:  tk-devel
-BuildRequires:	libalsa-devel
 
 %description
 Snack is a sound processing toolkit designed as an extension
@@ -80,7 +79,7 @@ chmod 644 COPYING README changes
 
 %build
 cd unix
-%configure2_5x --with-tcl=/usr/lib --with-tk=/usr/lib --with-ogg-include=/usr/include/ogg --with-ogg-lib=/usr/lib --enable-alsa
+%configure2_5x --with-tcl=/usr/lib --with-tk=/usr/lib --with-ogg-include=/usr/include/ogg --with-ogg-lib=/usr/lib
 %make TCL_INCPATH=/usr/include TK_INCPATH=/usr/include CC="gcc %{optflags}"
 %make TCL_INCPATH=/usr/include TK_INCPATH=/usr/include CC="gcc %{optflags}" libsnackogg.so
 
