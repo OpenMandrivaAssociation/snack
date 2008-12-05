@@ -86,7 +86,7 @@ rm -rf %{buildroot}
 
 %files -n tcl-%{name}
 %defattr(-,root,root)
-%doc changes COPYING doc/tcl-man.html demos/tcl/*doc/A* doc/C* doc/F* README doc/S*
+%doc changes COPYING doc/tcl-man.html demos/tcl/* doc/A* doc/C* doc/F* README doc/S*
 %{tcl_sitearch}/%{name}%{version}
 
 %files -n python-%{name}
