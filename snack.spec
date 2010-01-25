@@ -8,6 +8,9 @@ URL: 		http://www.speech.kth.se/snack/
 Source0:	http://www.speech.kth.se/~kare/%{name}%{version}.tar.bz2
 # Fix underlinking
 Patch0:		snack-2.2.10-underlinking.patch
+Patch1:         snack-2.2.10-unity-linux-fix-roundf.patch
+Patch2:         snack-2.2.10-unity-linux-gcc44.patch
+Patch3:		snack-2.2.10-mdv-fix-string-format.patch
 BuildRoot: 	%{_tmppath}/%{name}-buildroot
 BuildRequires:	tcl 
 BuildRequires:  tk 
@@ -53,6 +56,9 @@ Snack Sound Toolkit for Python.
 %prep
 %setup -q -n %{name}%{version}
 %patch0 -p1 -b .underlink
+%patch1 -p1
+%patch2 -p1
+%patch3 -p0
 chmod 644 COPYING README changes
 
 %build
