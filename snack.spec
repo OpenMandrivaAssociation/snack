@@ -1,17 +1,17 @@
 Summary:	Script-driven sound processing toolkit
 Name:		snack
 Version: 	2.2.10
-Release: 	%{mkrel 8}
+Release: 	9
 License: 	BSD
 Group: 		Sound
 URL: 		http://www.speech.kth.se/snack/
 Source0:	http://www.speech.kth.se/~kare/%{name}%{version}.tar.bz2
 # Fix underlinking
 Patch0:		snack-2.2.10-underlinking.patch
-Patch1:         snack-2.2.10-unity-linux-fix-roundf.patch
-Patch2:         snack-2.2.10-unity-linux-gcc44.patch
+Patch1:		snack-2.2.10-unity-linux-fix-roundf.patch
+Patch2:		snack-2.2.10-unity-linux-gcc44.patch
 Patch3:		snack-2.2.10-mdv-fix-string-format.patch
-BuildRoot: 	%{_tmppath}/%{name}-buildroot
+
 BuildRequires:	tcl 
 BuildRequires:  tk 
 BuildRequires:  libogg-devel 
