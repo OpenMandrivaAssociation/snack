@@ -100,3 +100,99 @@ rm -rf %{buildroot}
 %doc doc/python-man.html demos/python/*
 %{py_puresitedir}/*
 
+
+
+%changelog
+* Mon Oct 24 2011 Matthew Dawkins <mattydaw@mandriva.org> 2.2.10-9
++ Revision: 705924
+- rebuild
+
+* Mon Jan 25 2010 Ahmad Samir <ahmadsamir@mandriva.org> 2.2.10-8mdv2011.0
++ Revision: 495648
+- add patches from unity-linux
+- add patch to fix string format
+
+  + Thierry Vignaud <tv@mandriva.org>
+    - rebuild
+
+* Sat Dec 27 2008 Adam Williamson <awilliamson@mandriva.org> 2.2.10-7mdv2009.1
++ Revision: 319726
+- rebuild with python 2.6
+
+* Fri Dec 05 2008 Adam Williamson <awilliamson@mandriva.org> 2.2.10-6mdv2009.1
++ Revision: 310775
+- missing a space in the file list
+- rebuild with new tcl
+- move to new locations per policy
+- fix descriptions
+- add underlinking.patch: fixes underlinking
+- drop all the libification stuff, tcl modules are not shared libraries
+
+* Wed Mar 19 2008 Adam Williamson <awilliamson@mandriva.org> 2.2.10-5mdv2008.1
++ Revision: 188741
+- disable ALSA build again (snack's ALSA code does not actually work, as per Debian and Gentoo and my private testing)
+
+* Wed Mar 05 2008 Adam Williamson <awilliamson@mandriva.org> 2.2.10-4mdv2008.1
++ Revision: 179398
+- puresitedir not platsitedir (original spec was wrong...)
+- generate .pyo as well as .pyc for python file
+- enable ALSA support (#38282)
+- spec clean
+
+  + Olivier Blin <blino@mandriva.org>
+    - restore BuildRoot
+
+* Mon Dec 17 2007 Thierry Vignaud <tv@mandriva.org> 2.2.10-3mdv2008.1
++ Revision: 127412
+- kill re-definition of %%buildroot on Pixel's request
+- import snack
+
+
+* Wed Apr 26 2006 Nicolas Lécureuil <neoclust@mandriva.org> 2.2.10-3mdk
+- Fix BuildRequires
+
+* Tue Apr 25 2006 Nicolas Lécureuil <neoclust@mandriva.org> 2.2.10-2mdk
+- Fix BuildRequires
+- use mkrel
+
+* Tue Feb 14 2006 Stew Benedict <sbenedict@mandriva.com> 2.2.10-1mdk
+- 2.2.10
+- use current %%pyver macro 
+- break up package some more into -devel, tcl-, python-
+- python package requires tkinter (should probably be python-tkinter)
+- add demos to python, tcl packages
+- make rpmlint happier
+- don't need to run ldconfig, python and tcl know how to find the libs
+
+* Mon Aug 29 2005 Austin Acton <austin@mandriva.org> 2.2.9-1mdk
+- 2.2.9
+- fix license
+- fix python install
+
+* Sun Feb 6 2005 Austin Acton <austin@mandrake.org> 2.2.8-2mdk
+- python 2.4
+- fix summary
+
+* Tue Oct 26 2004 Austin Acton <austin@mandrake.org> 2.2.8-1mdk
+- 2.2.8
+
+* Wed Jun 2 2004 Austin Acton <austin@mandrake.org> 2.2.5-1mdk
+- 2.2.5
+- configure 2.5
+- fix some permissions
+
+* Tue Aug 12 2003 Per Øyvind Karlsen <peroyvind@linux-mandrake.com> 2.2.2-3mdk
+- rebuild for new python
+
+* Tue Jul 15 2003 Austin Acton <aacton@yorku.ca> 2.2.2-2mdk
+- DIRM
+
+* Fri Jun 6 2003 Austin Acton <aacton@yorku.ca> 2.2.2-1mdk
+- 2.2.2
+
+* Fri Apr 25 2003 Austin Acton <aacton@yorku.ca> 2.2-2mdk
+- buildrequires and mklibname
+
+* Sat Jan 11 2003 Austin Acton <aacton@yorku.ca> 2.2-1mdk
+- initial package
+- todo: add NIST/sphere library
