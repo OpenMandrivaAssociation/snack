@@ -1,7 +1,7 @@
 Summary:	Script-driven sound processing toolkit
 Name:		snack
 Version: 	2.2.10
-Release: 	9
+Release: 	10
 License: 	BSD
 Group: 		Sound
 URL: 		http://www.speech.kth.se/snack/
