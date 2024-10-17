@@ -4,7 +4,7 @@ Version: 	2.2.10
 Release: 	10
 License: 	BSD
 Group: 		Sound
-URL: 		http://www.speech.kth.se/snack/
+URL: 		https://www.speech.kth.se/snack/
 Source0:	http://www.speech.kth.se/~kare/%{name}%{version}.tar.bz2
 # Fix underlinking
 Patch0:		snack-2.2.10-underlinking.patch
